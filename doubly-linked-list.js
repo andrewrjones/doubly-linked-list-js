@@ -1,3 +1,6 @@
+/*
+ * Constructor. Takes no arguments.
+*/
 function DoublyLinkedList() {
   // pointer to first item
   this._head = null;
@@ -7,6 +10,7 @@ function DoublyLinkedList() {
   this._length = 0;
 }
 
+// Wraps data in a node object.
 DoublyLinkedList.prototype._createNewNode = function(data){
   var node = { 
       data: data, 
@@ -16,6 +20,9 @@ DoublyLinkedList.prototype._createNewNode = function(data){
   return node;
 };
 
+/*
+ * Appends a node to the end of the list.
+*/
 DoublyLinkedList.prototype.append = function(data){
   var node = this._createNewNode(data);
 
@@ -36,6 +43,9 @@ DoublyLinkedList.prototype.append = function(data){
   this._length++;
 };
 
+/*
+ * Prepends a node to the end of the list.
+*/
 DoublyLinkedList.prototype.prepend = function(data){
   var node = this._createNewNode(data);
   
@@ -57,18 +67,9 @@ DoublyLinkedList.prototype.prepend = function(data){
   this._length++;
 };
 
-DoublyLinkedList.prototype.remove = function(index){
-  throw "Not implemented";
-};
-
-DoublyLinkedList.prototype.head = function(){
-  return this._head;
-};
-
-DoublyLinkedList.prototype.tail = function(){
-  return this._tail;
-};
-
+/*
+ * Returns the node at the specified index. The index starts at 0.
+*/
 DoublyLinkedList.prototype.item = function(index){
   if (index >= 0 && index < this._length){
     var node = this._head;
@@ -77,6 +78,30 @@ DoublyLinkedList.prototype.item = function(index){
   }
 };
 
+/*
+ * Returns the node at the head of the list.
+*/
+DoublyLinkedList.prototype.head = function(){
+  return this._head;
+};
+
+/*
+ * Returns the node at the tail of the list.
+*/
+DoublyLinkedList.prototype.tail = function(){
+  return this._tail;
+};
+
+/*
+ * Returns the size of the list.
+*/
 DoublyLinkedList.prototype.size = function(){
   return this._length;
+};
+
+/*
+ * Removes the item at the index.
+*/
+DoublyLinkedList.prototype.remove = function(index){
+  throw "Not implemented";
 };
