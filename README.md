@@ -5,7 +5,7 @@ This is a Javascipt implementation of a [doubly linked list](http://en.wikipedia
 
 I needed a doubly linked list for a project I was doing, and thought I would post the code here in case it was useful for anyone else.
 
-It has been tested in the browser. Should work for ndode.js too.
+It has been tested in the browser. Should work for node.js too.
 
 Synopsis
 --------
