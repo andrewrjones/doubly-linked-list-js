@@ -13,11 +13,14 @@ Synopsis
 ```javascript
 list = new DoublyLinkedList();
 
-list.append('data1');
-list.append('data2');
-list.append('data3');
+list.append(new DoublyLinkedListNode('data1'));
+node = new DoublyLinkedListNode('data2');
+list.append(node);
+list.append(new DoublyLinkedListNode('data3'));
 
 size = list.size; // 3
+node.prev.data; // data1
+node.next.data; // data3
 
 node = list.item(1);
 data = node.data; // data2
@@ -30,7 +33,7 @@ data = node.data; // data1
 node = list.tail();
 data = node.data; // data3
 
-list.prepend('data4');
+list.prepend(new DoublyLinkedListNode('data4'));
 
 size = list.size; // 4
 
@@ -40,18 +43,33 @@ prev = node.prev; // null
 next = node.next; // data1
 ```
 
-API
----
+DoublyLinkedListNode API
+------------------------
+
+### new DoublyLinkedListNode(data)
+
+Creates a new node to add to the list.
+
+### next
+
+Pointer to the next item in the list.
+
+### prev
+
+Pointer to the previous item in the list.
+
+DoublyLinkedList API
+--------------------
 
 ### new DoublyLinkedList()
 
 Creates a new DoublyLinkedList. Takes no arguments.
 
-### append(data)
+### append(node)
 
 Appends a node to the end of the list.
 
-### prepend(data)
+### prepend(node)
 
 Prepends a node to the end of the list.
 
@@ -59,27 +77,15 @@ Prepends a node to the end of the list.
 
 Returns the node at the specified index. The index starts at 0.
 
-*Note:* When the node is returned, it looks like this:
-
-```javascript
-{
-    // pointers to the previous and next nodes
-    prev: node,
-    next: node,
-    // your data
-    data: data
-}
-```
-
 This allows you to easily walk the list.
 
 ### head()
 
-Returns the node at the head of the list. See `item(index)` for notes on the structure of the node returned.
+Returns the node at the head of the list.
 
 ### tail()
 
-Returns the node at the tail of the list. See `item(index)` for notes on the structure of the node returned.
+Returns the node at the tail of the list.
 
 ### size()
 
