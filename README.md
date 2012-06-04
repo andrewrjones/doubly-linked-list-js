@@ -14,10 +14,12 @@ Synopsis
 list = new DoublyLinkedList();
 
 list.append('data1');
-list.append('data2');
+node = list.append('data2');
 list.append('data3');
 
 size = list.size; // 3
+node.prev.data; // data1
+node.next.data; // data3
 
 node = list.item(1);
 data = node.data; // data2
@@ -49,11 +51,15 @@ Creates a new DoublyLinkedList. Takes no arguments.
 
 ### append(data)
 
-Appends a node to the end of the list.
+Appends a node to the end of the list. Returns the node.
+
+See `item(index)` for notes on the structure of the node returned.
 
 ### prepend(data)
 
-Prepends a node to the end of the list.
+Prepends a node to the end of the list. Returns the node.
+
+See `item(index)` for notes on the structure of the node returned.
 
 ### item(index)
 

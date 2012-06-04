@@ -41,6 +41,8 @@ DoublyLinkedList.prototype.append = function(data){
   
   // update count
   this._length++;
+
+  return node;
 };
 
 /*
@@ -65,6 +67,8 @@ DoublyLinkedList.prototype.prepend = function(data){
   
   // update count
   this._length++;
+
+  return node;
 };
 
 /*

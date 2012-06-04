@@ -10,7 +10,7 @@
     }
   });
   
-  test("DoublyLinkedList", 23, function() {
+  test("DoublyLinkedList", 27, function() {
     var list = new DoublyLinkedList(),
         node = null;
 
@@ -20,10 +20,13 @@
     // append items to the list
     list.append('data1');
     strictEqual(list.size(), 1);
-    list.append('data2');
+    node = list.append('data2');
     strictEqual(list.size(), 2);
     list.append('data3');
     strictEqual(list.size(), 3);
+    // check pointers of middle node
+    strictEqual(node.prev.data, 'data1');
+    strictEqual(node.next.data, 'data3');
     
     // get tail item
     node = list.tail();
@@ -41,7 +44,9 @@
     strictEqual(node.next.data, 'data3');
     
     // prepend an item
-    list.prepend('data4');
+    node = list.prepend('data4');
+    strictEqual(node.prev, null);
+    strictEqual(node.next.data, 'data1');
     strictEqual(list.size(), 4);
     
     // get new item
