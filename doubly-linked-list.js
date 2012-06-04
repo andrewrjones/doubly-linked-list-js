@@ -1,15 +1,4 @@
 /*
- * Represents a node in the linked list.
-*/
-function DoublyLinkedListNode(data){
-  this.data = data;
-  
-  // pointers
-  this.next = null;
-  this.prev = null;
-}
-
-/*
  * Constructor. Takes no arguments.
 */
 function DoublyLinkedList() {
@@ -21,10 +10,22 @@ function DoublyLinkedList() {
   this._length = 0;
 }
 
+// Wraps data in a node object.
+DoublyLinkedList.prototype._createNewNode = function(data){
+  var node = { 
+      data: data, 
+      next: null,
+      prev: null
+  };
+  return node;
+};
+
 /*
  * Appends a node to the end of the list.
 */
-DoublyLinkedList.prototype.append = function(node){
+DoublyLinkedList.prototype.append = function(data){
+  var node = this._createNewNode(data);
+
   if (this._length === 0) {
     
     // first node, so all pointers to this
@@ -45,7 +46,9 @@ DoublyLinkedList.prototype.append = function(node){
 /*
  * Prepends a node to the end of the list.
 */
-DoublyLinkedList.prototype.prepend = function(node){
+DoublyLinkedList.prototype.prepend = function(data){
+  var node = this._createNewNode(data);
+  
   if (this.first === null) {
     
     // we are empty, so this is the first node

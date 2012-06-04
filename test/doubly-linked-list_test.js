@@ -1,7 +1,7 @@
 /*global QUnit:false, module:false, test:false, asyncTest:false, expect:false*/
 /*global start:false, stop:false ok:false, equal:false, notEqual:false, deepEqual:false*/
 /*global notDeepEqual:false, strictEqual:false, notStrictEqual:false, raises:false*/
-/*global DoublyLinkedList:false, DoublyLinkedListNode:false, jQuery:false*/
+/*global DoublyLinkedList:false, jQuery:false*/
 (function($) {
 
   module('DoublyLinkedList#unit', {
@@ -10,7 +10,7 @@
     }
   });
   
-  test("DoublyLinkedList", 27, function() {
+  test("DoublyLinkedList", 23, function() {
     var list = new DoublyLinkedList(),
         node = null;
 
@@ -18,16 +18,12 @@
     strictEqual(list.size(), 0);
     
     // append items to the list
-    list.append(new DoublyLinkedListNode('data1'));
+    list.append('data1');
     strictEqual(list.size(), 1);
-    node = new DoublyLinkedListNode('data2');
-    list.append(node);
+    list.append('data2');
     strictEqual(list.size(), 2);
-    list.append(new DoublyLinkedListNode('data3'));
+    list.append('data3');
     strictEqual(list.size(), 3);
-    // check pointers of middle node
-    strictEqual(node.prev.data, 'data1');
-    strictEqual(node.next.data, 'data3');
     
     // get tail item
     node = list.tail();
@@ -45,10 +41,7 @@
     strictEqual(node.next.data, 'data3');
     
     // prepend an item
-    node = new DoublyLinkedListNode('data4');
-    list.prepend(node);
-    strictEqual(node.prev, null);
-    strictEqual(node.next.data, 'data1');
+    list.prepend('data4');
     strictEqual(list.size(), 4);
     
     // get new item
