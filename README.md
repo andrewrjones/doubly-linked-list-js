@@ -96,3 +96,8 @@ Returns the size of the list.
 Removes the item at the index.
 
 *Note:* Not currently implemented. Patches (with tests) welcome.
+
+More
+----
+
+https://github.com/playcraft/gamecore.js/blob/master/src/linkedlist.js
