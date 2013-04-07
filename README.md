@@ -110,6 +110,11 @@ Removes the item at the index.
 
 *Note:* Not currently implemented. Patches (with tests) welcome.
 
+Build status
+------------
+
+[![Build Status](https://secure.travis-ci.org/andrewrjones/doubly-linked-list-js.png)](http://travis-ci.org/andrewrjones/doubly-linked-list-js)
+
 More
 ----
 
