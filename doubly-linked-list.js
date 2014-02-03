@@ -58,7 +58,7 @@
 
       // we are empty, so this is the first node
       // use the same logic as append
-      this.append(node);
+      this.append(data);
       return;
     } else {
 
