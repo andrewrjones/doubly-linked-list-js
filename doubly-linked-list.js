@@ -15,10 +15,32 @@
 
   // Wraps data in a node object.
   DoublyLinkedList.prototype._createNewNode = function (data) {
+    var list = this;
+
     var node = {
       data: data,
       next: null,
-      prev: null
+      prev: null,
+
+      remove: function() {
+        if (this.prev !== null) {
+          this.prev.next = this.next;
+        }
+
+        if (this.next !== null) {
+          this.next.prev = this.prev;
+        }
+
+        if (list._head === this) {
+          list._head = this.next;
+        }
+
+        if (list._tail === this) {
+          list._tail = this.prev;
+        }
+
+        list._length--;
+      }
     };
     return node;
   };

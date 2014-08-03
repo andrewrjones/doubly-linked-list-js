@@ -4,7 +4,7 @@ module.exports = {
   'DoublyLinkedList': function (test) {
     "use strict";
 
-    test.expect(29);
+    test.expect(62);
 
     var list = new DLL.DoublyLinkedList(),
         node = null;
@@ -59,16 +59,74 @@ module.exports = {
     test.strictEqual(node.prev.data, 'data4');
     test.strictEqual(node.next.data, 'data2');
 
-    // not yet implemented
-    test.throws(function () {
-      list.remove(1);
-    });
-
     // Test prepend on an empty list
     var prependList = new DLL.DoublyLinkedList();
     prependList.prepend('cake');
     test.strictEqual(prependList.size(), 1);
     test.strictEqual(prependList.head().data, 'cake');
+
+    // Test node removal
+    var makeListOfSizeN = function(n) {
+      list = new DLL.DoublyLinkedList();
+
+      for (var i = 0; i < n; i++) {
+        list.append("thing" + i)
+      }
+
+      return list;
+    }
+
+    var removalList = makeListOfSizeN(3);
+    removalList.item(1).remove();
+    test.strictEqual(removalList.size(), 2);
+    test.strictEqual(removalList.head().data, 'thing0');
+    test.strictEqual(removalList.head().prev, null);
+    test.strictEqual(removalList.head().next.data, 'thing2');
+    test.strictEqual(removalList.tail().data, 'thing2');
+    test.strictEqual(removalList.tail().prev.data, 'thing0');
+    test.strictEqual(removalList.tail().next, null);
+
+    removalList = makeListOfSizeN(3);
+    removalList.item(0).remove();
+    test.strictEqual(removalList.size(), 2);
+    test.strictEqual(removalList.head().data, 'thing1');
+    test.strictEqual(removalList.head().prev, null);
+    test.strictEqual(removalList.head().next.data, 'thing2');
+    test.strictEqual(removalList.tail().data, 'thing2');
+    test.strictEqual(removalList.tail().prev.data, 'thing1');
+    test.strictEqual(removalList.tail().next, null);
+
+    removalList = makeListOfSizeN(3);
+    removalList.item(2).remove();
+    test.strictEqual(removalList.size(), 2);
+    test.strictEqual(removalList.head().data, 'thing0');
+    test.strictEqual(removalList.head().prev, null);
+    test.strictEqual(removalList.head().next.data, 'thing1');
+    test.strictEqual(removalList.tail().data, 'thing1');
+    test.strictEqual(removalList.tail().prev.data, 'thing0');
+    test.strictEqual(removalList.tail().next, null);
+
+    removalList = makeListOfSizeN(2);
+    removalList.item(0).remove();
+    test.strictEqual(removalList.size(), 1);
+    test.strictEqual(removalList.head().data, 'thing1');
+    test.strictEqual(removalList.tail().data, 'thing1');
+    test.strictEqual(removalList.head().prev, null);
+    test.strictEqual(removalList.head().next, null);
+
+    removalList = makeListOfSizeN(2);
+    removalList.item(1).remove();
+    test.strictEqual(removalList.size(), 1);
+    test.strictEqual(removalList.head().data, 'thing0');
+    test.strictEqual(removalList.tail().data, 'thing0');
+    test.strictEqual(removalList.head().prev, null);
+    test.strictEqual(removalList.head().next, null);
+
+    removalList = makeListOfSizeN(1);
+    removalList.item(0).remove();
+    test.strictEqual(removalList.size(), 0);
+    test.strictEqual(removalList.head(), null);
+    test.strictEqual(removalList.tail(), null);
 
     test.done();
   }
