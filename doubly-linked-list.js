@@ -54,12 +54,11 @@
   DoublyLinkedList.prototype.prepend = function (data) {
     var node = this._createNewNode(data);
 
-    if (this.first === null) {
+    if (this._head === null) {
 
       // we are empty, so this is the first node
       // use the same logic as append
-      this.append(data);
-      return;
+      return this.append(data);
     } else {
 
       // place before head

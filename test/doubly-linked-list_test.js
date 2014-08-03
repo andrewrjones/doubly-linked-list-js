@@ -4,7 +4,7 @@ module.exports = {
   'DoublyLinkedList': function (test) {
     "use strict";
 
-    test.expect(27);
+    test.expect(29);
 
     var list = new DLL.DoublyLinkedList(),
         node = null;
@@ -63,6 +63,12 @@ module.exports = {
     test.throws(function () {
       list.remove(1);
     });
+
+    // Test prepend on an empty list
+    var prependList = new DLL.DoublyLinkedList();
+    prependList.prepend('cake');
+    test.strictEqual(prependList.size(), 1);
+    test.strictEqual(prependList.head().data, 'cake');
 
     test.done();
   }
