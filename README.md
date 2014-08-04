@@ -43,6 +43,16 @@ node = list.head();
 data = node.data; // data4
 prev = node.prev; // null
 next = node.next; // data1
+
+node.append('frog');
+appended = node.next; // frog
+next = appended.next; // data1
+
+next.remove();
+afterRemoved = appended.next; // data2
+
+afterRemoved.prepend('bird');
+prepended = appended.next; // bird
 ```
 
 Browser.

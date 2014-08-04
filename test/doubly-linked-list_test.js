@@ -4,7 +4,7 @@ module.exports = {
   'DoublyLinkedList': function (test) {
     "use strict";
 
-    test.expect(62);
+    test.expect(76);
 
     var list = new DLL.DoublyLinkedList(),
         node = null;
@@ -70,11 +70,11 @@ module.exports = {
       list = new DLL.DoublyLinkedList();
 
       for (var i = 0; i < n; i++) {
-        list.append("thing" + i)
+        list.append("thing" + i);
       }
 
       return list;
-    }
+    };
 
     var removalList = makeListOfSizeN(3);
     removalList.item(1).remove();
@@ -127,6 +127,38 @@ module.exports = {
     test.strictEqual(removalList.size(), 0);
     test.strictEqual(removalList.head(), null);
     test.strictEqual(removalList.tail(), null);
+
+    // Test prepending before a specific node
+    prependList = makeListOfSizeN(2);
+    prependList.tail().prepend('new');
+    var newNode = prependList.item(1);
+    test.strictEqual(prependList.size(), 3);
+    test.strictEqual(newNode.data, 'new');
+    test.strictEqual(newNode.prev.data, 'thing0');
+    test.strictEqual(newNode.next.data, 'thing1');
+
+    prependList = makeListOfSizeN(2);
+    prependList.head().prepend('new');
+    test.strictEqual(prependList.size(), 3);
+    newNode = prependList.head();
+    test.strictEqual(newNode.data, 'new');
+    test.strictEqual(newNode.next.data, 'thing0');
+
+    // Test appending after a specific node
+    var appendList = makeListOfSizeN(2);
+    appendList.head().append('new');
+    newNode = appendList.item(1);
+    test.strictEqual(appendList.size(), 3);
+    test.strictEqual(newNode.data, 'new');
+    test.strictEqual(newNode.prev.data, 'thing0');
+    test.strictEqual(newNode.next.data, 'thing1');
+
+    appendList = makeListOfSizeN(2);
+    appendList.tail().append('new');
+    test.strictEqual(appendList.size(), 3);
+    newNode = appendList.tail();
+    test.strictEqual(newNode.data, 'new');
+    test.strictEqual(newNode.prev.data, 'thing1');
 
     test.done();
   }

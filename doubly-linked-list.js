@@ -40,8 +40,39 @@
         }
 
         list._length--;
+      },
+
+      prepend: function(data) {
+        if (list._head === this) {
+          return list.prepend(data);
+        }
+
+        var newNode = list._createNewNode(data);
+        newNode.prev = this.prev;
+        newNode.next = this;
+        this.prev.next = newNode;
+        this.prev = newNode;
+
+        list._length++;
+        return newNode;
+      },
+
+      append: function(data) {
+        if (list._tail === this) {
+          return list.append(data);
+        }
+
+        var newNode = list._createNewNode(data);
+        newNode.prev = this;
+        newNode.next = this.next;
+        this.next.prev = newNode;
+        this.next = newNode;
+
+        list._length++;
+        return newNode;
       }
     };
+
     return node;
   };
 
