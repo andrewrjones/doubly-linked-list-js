@@ -88,19 +88,7 @@ See `item(index)` for notes on the structure of the node returned.
 
 Returns the node at the specified index. The index starts at 0.
 
-*Note:* When the node is returned, it looks like this:
-
-```javascript
-{
-    // pointers to the previous and next nodes
-    prev: node,
-    next: node,
-    // your data
-    data: data
-}
-```
-
-This allows you to easily walk the list.
+*Note:* Nodes returned support various operations. See the section about node objects for a list of supported properties and methods.
 
 ### head()
 
@@ -114,11 +102,33 @@ Returns the node at the tail of the list. See `item(index)` for notes on the str
 
 Returns the size of the list.
 
-### remove(index)
+### Node Objects
 
-Removes the item at the index.
+When a list/node operation returns a node, it is in fact an object with the following properties and methods:
 
-*Note:* Not currently implemented. Patches (with tests) welcome.
+#### prev
+
+The node before the current one, or null if this node is the list head.
+
+#### next
+
+The node after the current one, or null if this node is the list tail.
+
+#### data
+
+The data stored in the node when it was created.
+
+#### remove()
+
+Removes the node from the list.
+
+#### append(data)
+
+Creates a new node with a data value of `data` and adds it to the list after the current node. Returns the new node.
+
+#### prepend(data)
+
+Creates a new node with a data value of `data` and adds it to the list before the current node. Returns the new node.
 
 Build status
 ------------
