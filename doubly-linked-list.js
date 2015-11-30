@@ -15,11 +15,64 @@
 
   // Wraps data in a node object.
   DoublyLinkedList.prototype._createNewNode = function (data) {
+    var list = this;
+
     var node = {
       data: data,
       next: null,
-      prev: null
+      prev: null,
+
+      remove: function() {
+        if (this.prev !== null) {
+          this.prev.next = this.next;
+        }
+
+        if (this.next !== null) {
+          this.next.prev = this.prev;
+        }
+
+        if (list._head === this) {
+          list._head = this.next;
+        }
+
+        if (list._tail === this) {
+          list._tail = this.prev;
+        }
+
+        list._length--;
+      },
+
+      prepend: function(data) {
+        if (list._head === this) {
+          return list.prepend(data);
+        }
+
+        var newNode = list._createNewNode(data);
+        newNode.prev = this.prev;
+        newNode.next = this;
+        this.prev.next = newNode;
+        this.prev = newNode;
+
+        list._length++;
+        return newNode;
+      },
+
+      append: function(data) {
+        if (list._tail === this) {
+          return list.append(data);
+        }
+
+        var newNode = list._createNewNode(data);
+        newNode.prev = this;
+        newNode.next = this.next;
+        this.next.prev = newNode;
+        this.next = newNode;
+
+        list._length++;
+        return newNode;
+      }
     };
+
     return node;
   };
 
@@ -54,12 +107,11 @@
   DoublyLinkedList.prototype.prepend = function (data) {
     var node = this._createNewNode(data);
 
-    if (this.first === null) {
+    if (this._head === null) {
 
       // we are empty, so this is the first node
       // use the same logic as append
-      this.append(data);
-      return;
+      return this.append(data);
     } else {
 
       // place before head
